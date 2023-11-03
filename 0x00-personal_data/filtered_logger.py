@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-import re
+'''
+Module for handling Personal data
+'''
 from typing import List
-'''
-Module for handling data
-'''
+import re
 
 
 def filter_datum(fields: List[str], redaction: str,
