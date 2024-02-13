@@ -35,3 +35,13 @@ def unauthorized() -> str:
     """
     unauthorized_message = dumps({"error": "Unauthorized"})
     abort(Response(unauthorized_message, 401))
+
+
+@app_views.route('/forbidden', methods=['GET'], strict_slashes=False)
+def forbidden() -> str:
+    """ GET /api/v1/forbidden
+    Return:
+      - Raise 403 Code Status
+    """
+    forbidden_message = dumps({"error": "Forbidden"})
+    abort(Response(forbidden_message, 403))
