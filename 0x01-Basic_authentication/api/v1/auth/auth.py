@@ -4,6 +4,7 @@ Authentication Module for the API
 """
 from flask import request
 from typing import List, TypeVar
+import fnmatch
 
 
 class Auth:
@@ -15,7 +16,16 @@ class Auth:
         """
         Method of require_auth
         """
-        return False
+        if path is None:
+            return True
+        if excluded_paths is None or not excluded_paths:
+            return True
+        path = path.rstrip("/")
+        for excluded_path in excluded_paths:
+            excluded_path = excluded_path.rstrip("/")
+            if path == excluded_path:
+                return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """
